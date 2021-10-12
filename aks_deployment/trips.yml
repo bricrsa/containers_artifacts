@@ -1,0 +1,1 @@
+kubectl create deployment my-deploy --image nginx --dry-run -o yaml
