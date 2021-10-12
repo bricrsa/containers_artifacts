@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: oh-team5-poi
+  name: oh-team5-poi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oh-team5-poi
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: oh-team5-trips
+    spec:
+      containers:
+      - image: registryrbq9427.azurecr.io/tripinsights/poi:1.0
+        name: poi
+        env:
+        - name: SQL_SERVER
+          value: sqlserverrbq9427.database.windows.net
+        - name: SQL_USER
+          value: sqladminrBq9427
+        - name: SQL_PASSWORD
+          value:  ''
+        resources: {}
+status: {}

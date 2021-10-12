@@ -1,1 +1,22 @@
-kubectl create deployment my-deploy --image nginx --dry-run -o yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: oh-team5-trips
+  name: oh-team5-trips
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oh-team5-trips
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: oh-team5-trips
+    spec:
+      containers:
+      - image: registryrbq9427.azurecr.io/tripinsights/trips:1.0
+        name: trips
+        resources: {}
+status: {}
