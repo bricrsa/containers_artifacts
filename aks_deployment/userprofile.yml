@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: userprofile
+  name: userprofile
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: userprofile
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: userprofile
+    spec:
+      containers:
+      - image: registryrbq9427.azurecr.io/tripinsights/userprofile:1.0
+        name: userprofile
+        env:
+        - name: SQL_SERVER
+          value: sqlserverrbq9427.database.windows.net
+        - name: SQL_USER
+          value: sqladminrBq9427
+        - name: SQL_PASSWORD
+          value: ''
+        resources: {}
+status: {}
