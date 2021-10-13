@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: oh-team5-java
   name: oh-team5-java
@@ -13,7 +12,6 @@ spec:
   strategy: {}
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: oh-team5-java
     spec:
@@ -22,11 +20,20 @@ spec:
         name: user-java
         env:
         - name: SQL_SERVER
-          value: sqlserverrbq9427.database.windows.net
+          valueFrom:
+            secretKeyRef:
+              name: sqlsecrets
+              key: server
         - name: SQL_USER
-          value: sqladminrBq9427
+          valueFrom:
+            secretKeyRef:
+              name: sqlsecrets
+              key: username
         - name: SQL_PASSWORD
-          value:  ''
+          valueFrom:
+            secretKeyRef:
+              name: sqlsecrets
+              key: password
         resources: {}
 status: {}
 ---
@@ -40,7 +47,7 @@ spec:
   ports:
   - port: 8000
     protocol: TCP
-    targetPort: 8000
+    targetPort: 80
   selector:
     app: oh-team5-java
   type: NodePort
