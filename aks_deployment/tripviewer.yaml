@@ -23,7 +23,7 @@ spec:
         - name: USERPROFILE_API_ENDPOINT
           value:  http://10.244.0.xx:80
         - name: TRIPS_API_ENDPOINT
-          value:  http://10.244.0.12:80
+          value:  http://trips-svc.default.svc.cluster.local:8000
         resources: {}
 status: {}
 ---
