@@ -29,3 +29,20 @@ spec:
           value:  ''
         resources: {}
 status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: oh-team5-java
+  name: user-java-svc
+spec:
+  ports:
+  - port: 8000
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    app: oh-team5-java
+  type: NodePort
+status:
+  loadBalancer: {}
