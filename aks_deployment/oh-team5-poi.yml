@@ -36,3 +36,20 @@ spec:
               key: password
         resources: {}
 status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: oh-team5-poi
+  name: poi-svc
+spec:
+  ports:
+  - port: 8000
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: oh-team5-poi
+  type: NodePort
+status:
+  loadBalancer: {}
