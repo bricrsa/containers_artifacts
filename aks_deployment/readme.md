@@ -16,10 +16,10 @@ kubectl get pods
 
 kubectl describe deployment oh-team5-poi
 
-<<<<<<< HEAD
+
 kubectl create deployment userprofile --image registryrbq9427.azurecr.io/tripinsights/userprofile:1.0 --dry-run=client -o yaml
-=======
+
 kubectl create secret generic sqlpassword \
     --namespace default \
     --from-literal=SQL_PASSWORD="mypasswordmonkey123"
->>>>>>> b590fabaa891dea1c9e7ca18c3b52626bfc33721
+
