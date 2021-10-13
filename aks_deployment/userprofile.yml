@@ -20,10 +20,19 @@ spec:
         name: userprofile
         env:
         - name: SQL_SERVER
-          value: sqlserverrbq9427.database.windows.net
+          valueFrom:
+            secretKeyRef:
+              name: sqlsecrets
+              key: server
         - name: SQL_USER
-          value: sqladminrBq9427
+          valueFrom:
+            secretKeyRef:
+              name: sqlsecrets
+              key: username
         - name: SQL_PASSWORD
-          value: ''
+          valueFrom:
+            secretKeyRef:
+              name: sqlsecrets
+              key: password
         resources: {}
 status: {}
