@@ -36,3 +36,20 @@ spec:
               key: password
         resources: {}
 status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: userprofile
+  name: userprofile-svc
+spec:
+  ports:
+  - port: 8000
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: userprofile
+  type: NodePort
+status:
+  loadBalancer: {}
