@@ -23,3 +23,4 @@ kubectl create secret generic sqlpassword \
     --namespace default \
     --from-literal=SQL_PASSWORD="mypasswordmonkey123"
 
+kubectl create secret generic sqlsecrets --from-literal=username=<username> --from-literal=password=<password> --from-literal=server=<servername>
