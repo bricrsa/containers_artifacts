@@ -18,5 +18,21 @@ spec:
       containers:
       - image: registryrbq9427.azurecr.io/tripinsights/trips:1.0
         name: trips
+        env:
+        - name: SQL_SERVER
+          valueFrom:
+            secretKeyRef:
+              name: sqlsecrets
+              key: server
+        - name: SQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: sqlsecrets
+              key: username
+        - name: SQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: sqlsecrets
+              key: password
         resources: {}
 status: {}
