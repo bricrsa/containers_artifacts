@@ -15,3 +15,7 @@ kubectl apply -f trips.yml
 kubectl get pods
 
 kubectl describe deployment oh-team5-poi
+
+kubectl create secret generic sqlpassword \
+    --namespace default \
+    --from-literal=SQL_PASSWORD="mypasswordmonkey123"
