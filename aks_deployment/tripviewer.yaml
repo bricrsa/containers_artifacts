@@ -21,7 +21,7 @@ spec:
         name: tripviewer
         env:
         - name: USERPROFILE_API_ENDPOINT
-          value:  http://10.244.0.xx:80
+          value:  http://userprofile-svc.default.svc.cluster.local:8000
         - name: TRIPS_API_ENDPOINT
           value:  http://trips-svc.default.svc.cluster.local:8000
         resources: {}
