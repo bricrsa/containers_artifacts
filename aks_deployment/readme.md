@@ -15,3 +15,5 @@ kubectl apply -f trips.yml
 kubectl get pods
 
 kubectl describe deployment oh-team5-poi
+
+kubectl create deployment userprofile --image registryrbq9427.azurecr.io/tripinsights/userprofile:1.0 --dry-run=client -o yaml
