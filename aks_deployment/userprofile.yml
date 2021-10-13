@@ -2,22 +2,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: oh-team5-poi
-  name: oh-team5-poi
+    app: userprofile
+  name: userprofile
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: oh-team5-poi
+      app: userprofile
   strategy: {}
   template:
     metadata:
       labels:
-        app: oh-team5-poi
+        app: userprofile
     spec:
       containers:
-      - image: registryrbq9427.azurecr.io/tripinsights/poi:1.0
-        name: poi
+      - image: registryrbq9427.azurecr.io/tripinsights/userprofile:1.0
+        name: userprofile
         env:
         - name: SQL_SERVER
           valueFrom:
