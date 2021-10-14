@@ -33,3 +33,13 @@ az aks enable-addons --addons http_application_routing --name myAKSCluster --res
 
 step2
 az aks show --resource-group teamResources --name myAKSCluster --query addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName -o table
+
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+
+NAMESPACE=ingress-basic
+
+helm repo update
+
+helm install ingress-nginx ingress-nginx/ingress-nginx --create-namespace --namespace ingress
+
+kubectl --namespace ingress get services -o wide -w ingress-nginx-controller
