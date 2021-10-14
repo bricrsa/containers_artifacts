@@ -27,3 +27,9 @@ kubectl create secret generic sqlsecrets --from-literal=username=<username> --fr
 az aks enable-addons --addons azure-keyvault-secrets-provider --name myAKSCluster --resource-group TeamResources
 
 kubectl get pods -n kube-system -l 'app in (secrets-store-csi-driver, secrets-store-provider-azure)'
+
+step1
+az aks enable-addons --addons http_application_routing --name myAKSCluster --resource-group teamResources
+
+step2
+az aks show --resource-group teamResources --name myAKSCluster --query addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName -o table
