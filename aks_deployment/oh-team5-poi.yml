@@ -19,6 +19,17 @@ spec:
       containers:
       - image: registryrbq9427.azurecr.io/tripinsights/poi:1.0
         name: poi
+        volumeMounts:
+            - name: secrets-store-inline
+              mountPath: "/mnt/secrets-store"
+              readOnly: true
+        volumes:
+          - name: secrets-store-inline
+            csi:
+              driver: secrets-store.csi.k8s.io
+              readOnly: true
+              volumeAttributes:
+                secretProviderClass: "ot5keyvault"
         env:
         - name: SQL_SERVER
           valueFrom:
@@ -37,6 +48,10 @@ spec:
               key: password
         resources: {}
 status: {}
+
+
+
+
 ---
 apiVersion: v1
 kind: Service
@@ -55,3 +70,4 @@ spec:
   type: NodePort
 status:
   loadBalancer: {}
+
