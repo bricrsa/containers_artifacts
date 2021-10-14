@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: tripviewer
   name: tripviewer
+  namespace: web
 spec:
   replicas: 1
   selector:
@@ -21,9 +21,9 @@ spec:
         name: tripviewer
         env:
         - name: USERPROFILE_API_ENDPOINT
-          value:  http://userprofile-svc.default.svc.cluster.local:8000
+          value:  http://userprofile-svc.api.svc.cluster.local:8000
         - name: TRIPS_API_ENDPOINT
-          value:  http://trips-svc.default.svc.cluster.local:8000
+          value:  http://trips-svc.api.svc.cluster.local:8000
         resources: {}
 status: {}
 ---
@@ -31,6 +31,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: tripview-service
+  namespace: web
 spec:
   type: LoadBalancer
   ports:
