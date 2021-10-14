@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: api
   labels:
     app: oh-team5-poi
   name: oh-team5-poi
@@ -36,3 +37,21 @@ spec:
               key: password
         resources: {}
 status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: api
+  labels:
+    app: oh-team5-poi
+  name: poi-svc
+spec:
+  ports:
+  - port: 8000
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: oh-team5-poi
+  type: NodePort
+status:
+  loadBalancer: {}
