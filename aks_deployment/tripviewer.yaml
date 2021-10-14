@@ -33,7 +33,7 @@ metadata:
   name: tripview-service
   namespace: web
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
   - port: 80
   selector:
