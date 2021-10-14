@@ -16,27 +16,25 @@ spec:
       labels:
         app: oh-team5-poi
     spec:
+      volumes:
+      - name: secrets-store-inline
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: "ot5keyvault"
       containers:
       - image: registryrbq9427.azurecr.io/tripinsights/poi:1.0
         name: poi
-        env:
-        - name: SQL_SERVER
-          valueFrom:
-            secretKeyRef:
-              name: sqlsecrets
-              key: server
-        - name: SQL_USER
-          valueFrom:
-            secretKeyRef:
-              name: sqlsecrets
-              key: username
-        - name: SQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: sqlsecrets
-              key: password
-        resources: {}
+        volumeMounts:
+          - name: secrets-store-inline
+            mountPath: "/mnt/secrets-store"
+            readOnly: true
 status: {}
+
+
+
+
 ---
 apiVersion: v1
 kind: Service
@@ -55,3 +53,4 @@ spec:
   type: NodePort
 status:
   loadBalancer: {}
+
