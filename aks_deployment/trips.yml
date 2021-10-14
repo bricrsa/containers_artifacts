@@ -16,27 +16,21 @@ spec:
       labels:
         app: oh-team5-trips
     spec:
+      volumes:
+      - name: secrets-store-inline
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: "ot5keyvault"
       containers:
       - image: registryrbq9427.azurecr.io/tripinsights/trips:1.0
         name: trips
-        env:
-        - name: SQL_SERVER
-          valueFrom:
-            secretKeyRef:
-              name: sqlsecrets
-              key: server
-        - name: SQL_USER
-          valueFrom:
-            secretKeyRef:
-              name: sqlsecrets
-              key: username
-        - name: SQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: sqlsecrets
-              key: password
-        resources: {}
-status: {}
+        volumeMounts:
+          - name: secrets-store-inline
+            mountPath: "/secrets"
+            readOnly: true
+
 ---
 apiVersion: v1
 kind: Service

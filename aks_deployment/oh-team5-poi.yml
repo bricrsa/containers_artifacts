@@ -28,7 +28,7 @@ spec:
         name: poi
         volumeMounts:
           - name: secrets-store-inline
-            mountPath: "/mnt/secrets-store"
+            mountPath: "/secrets"
             readOnly: true
 status: {}
 
