@@ -16,26 +16,20 @@ spec:
       labels:
         app: oh-team5-java
     spec:
+      volumes:
+      - name: secrets-store-inline
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: "ot5keyvault"
       containers:
       - image: registryrbq9427.azurecr.io/tripinsights/user-java:1.0
         name: user-java
-        env:
-        - name: SQL_SERVER
-          valueFrom:
-            secretKeyRef:
-              name: sqlsecrets
-              key: server
-        - name: SQL_USER
-          valueFrom:
-            secretKeyRef:
-              name: sqlsecrets
-              key: username
-        - name: SQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: sqlsecrets
-              key: password
-        resources: {}
+        volumeMounts:
+          - name: secrets-store-inline
+            mountPath: "/secrets"
+            readOnly: true
 status: {}
 ---
 apiVersion: v1
