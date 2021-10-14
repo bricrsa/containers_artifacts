@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: api
   labels:
     app: oh-team5-trips
   name: oh-team5-trips
@@ -40,6 +41,7 @@ status: {}
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: api
   labels:
     app: oh-team5-trips
   name: trips-svc
